@@ -41,6 +41,8 @@
           "const": "https://test.uncefact.org/vocabulary/untp/dpp/0.5.0/"
         }
       ],
+      "minItems": 2,
+      "uniqueItems": true,
       "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
       "readOnly": true,
       "default": [
