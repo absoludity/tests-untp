@@ -26,16 +26,38 @@
       }
     },
     "@context": {
-      "example": "https://test.uncefact.org/vocabulary/untp/dpp/dpp-context.jsonld",
+      "example": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"
+      ],
       "type": "array",
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "https://www.w3.org/ns/credentials/v2"
+        },
+        {
+          "type": "string",
+          "const": "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"
+        }
+      ],
       "items": {
-        "type": "string",
-        "enum": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"]
+        "oneOf": [
+          { "type": "string" },
+          { 
+            "type": "object",
+            "minProperties": 1
+          }
+        ]
       },
-      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
+      "minItems": 2,
+      "uniqueItems": true,
+      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. Can be either strings or context objects.",
       "readOnly": true,
-      "const": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"],
-      "default": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"]
+      "default": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"
+      ]
     },
     "id": {
       "example": "https://example-company.com/credentials/2a423366-a0d6-4855-ba65-2e0c926d09b0",
