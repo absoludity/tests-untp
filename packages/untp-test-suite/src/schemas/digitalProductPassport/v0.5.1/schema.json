@@ -18,8 +18,8 @@
         }
       ],
       "default": [
-        "DigitalProductPassport",
-        "VerifiableCredential"
+        "VerifiableCredential",
+        "DigitalProductPassport"
       ],
       "items": {
         "type": "string"
