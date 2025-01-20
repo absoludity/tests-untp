@@ -5,38 +5,55 @@
     "type": {
       "type": "array",
       "readOnly": true,
-      "const": [
-        "DigitalFacilityRecord",
-        "VerifiableCredential"
+      "allOf": [
+        {
+          "contains": {
+            "const": "VerifiableCredential"
+          }
+        },
+        {
+          "contains": {
+            "const": "DigitalFacilityRecord"
+          }
+        }
       ],
       "default": [
-        "DigitalFacilityRecord",
-        "VerifiableCredential"
+        "VerifiableCredential",
+        "DigitalFacilityRecord"
       ],
       "items": {
-        "type": "string",
-        "enum": [
-          "DigitalFacilityRecord",
-          "VerifiableCredential"
-        ]
+        "type": "string"
       }
     },
     "@context": {
-      "example": "https://test.uncefact.org/vocabulary/untp/dpp/dpp-context.jsonld",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "https://www.w3.org/ns/credentials/v2",
-          "https://test.uncefact.org/vocabulary/untp/dfr/0.5.0/"
-        ]
-      },
-      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
-      "readOnly": true,
-      "const": [
+      "example": [
         "https://www.w3.org/ns/credentials/v2",
         "https://test.uncefact.org/vocabulary/untp/dfr/0.5.0/"
       ],
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "https://www.w3.org/ns/credentials/v2"
+        },
+        {
+          "type": "string",
+          "const": "https://test.uncefact.org/vocabulary/untp/dfr/0.5.0/"
+        }
+      ],
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          { 
+            "type": "object",
+            "minProperties": 1
+          }
+        ]
+      },
+      "minItems": 2,
+      "uniqueItems": true,
+      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. Can be either strings or context objects.",
+      "readOnly": true,
       "default": [
         "https://www.w3.org/ns/credentials/v2",
         "https://test.uncefact.org/vocabulary/untp/dfr/0.5.0/"

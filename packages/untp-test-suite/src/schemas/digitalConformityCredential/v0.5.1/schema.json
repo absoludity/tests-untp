@@ -5,11 +5,24 @@
     "type": {
       "type": "array",
       "readOnly": true,
-      "const": ["DigitalConformityCredential", "VerifiableCredential"],
-      "default": ["DigitalConformityCredential", "VerifiableCredential"],
+      "allOf": [
+        {
+          "contains": {
+            "const": "VerifiableCredential"
+          }
+        },
+        {
+          "contains": {
+            "const": "DigitalConformityCredential"
+          }
+        }
+      ],
+      "default": [
+        "VerifiableCredential",
+        "DigitalConformityCredential"
+      ],
       "items": {
-        "type": "string",
-        "enum": ["DigitalConformityCredential", "VerifiableCredential"]
+        "type": "string"
       }
     },
     "@context": {

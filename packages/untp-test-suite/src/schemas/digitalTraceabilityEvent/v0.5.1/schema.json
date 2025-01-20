@@ -5,20 +5,24 @@
     "type": {
       "type": "array",
       "readOnly": true,
-      "const": [
-        "DigitalTraceabilityEvent",
-        "VerifiableCredential"
+      "allOf": [
+        {
+          "contains": {
+            "const": "VerifiableCredential"
+          }
+        },
+        {
+          "contains": {
+            "const": "DigitalTraceabilityEvent"
+          }
+        }
       ],
       "default": [
-        "DigitalTraceabilityEvent",
-        "VerifiableCredential"
+        "VerifiableCredential",
+        "DigitalTraceabilityEvent"
       ],
       "items": {
-        "type": "string",
-        "enum": [
-          "DigitalTraceabilityEvent",
-          "VerifiableCredential"
-        ]
+        "type": "string"
       }
     },
     "id": {
@@ -28,21 +32,34 @@
       "description": "A unique identifier (URI) assigned to the product passport. May be a UUID"
     },
     "@context": {
-      "example": "https://test.uncefact.org/vocabulary/untp/dcc/dcc-context.jsonld",
-      "type": "array",
-      "items": {
-        "type": "string",
-        "enum": [
-          "https://www.w3.org/ns/credentials/v2",
-          "https://test.uncefact.org/vocabulary/untp/dte/0.5.0/"
-        ]
-      },
-      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
-      "readOnly": true,
-      "const": [
+      "example": [
         "https://www.w3.org/ns/credentials/v2",
         "https://test.uncefact.org/vocabulary/untp/dte/0.5.0/"
       ],
+      "type": "array",
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "https://www.w3.org/ns/credentials/v2"
+        },
+        {
+          "type": "string",
+          "const": "https://test.uncefact.org/vocabulary/untp/dte/0.5.0/"
+        }
+      ],
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          { 
+            "type": "object",
+            "minProperties": 1
+          }
+        ]
+      },
+      "minItems": 2,
+      "uniqueItems": true,
+      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. Can be either strings or context objects.",
+      "readOnly": true,
       "default": [
         "https://www.w3.org/ns/credentials/v2",
         "https://test.uncefact.org/vocabulary/untp/dte/0.5.0/"
