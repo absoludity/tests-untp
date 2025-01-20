@@ -41,9 +41,15 @@
           "const": "https://test.uncefact.org/vocabulary/untp/dpp/0.5.1/"
         }
       ],
+      "items": {
+        "oneOf": [
+          { "type": "string" },
+          { "type": "object" }
+        ]
+      },
       "minItems": 2,
       "uniqueItems": true,
-      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
+      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. Can be either strings or context objects.",
       "readOnly": true,
       "default": [
         "https://www.w3.org/ns/credentials/v2",
