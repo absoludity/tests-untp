@@ -78,3 +78,4 @@ packages/untp-test-suite/data
 # vc-test-suite
 packages/vc-test-suite/suite.log
 packages/vc-test-suite/reports
+.aider*
