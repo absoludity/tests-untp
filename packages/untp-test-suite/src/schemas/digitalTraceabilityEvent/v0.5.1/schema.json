@@ -34,7 +34,7 @@
     "@context": {
       "example": [
         "https://www.w3.org/ns/credentials/v2",
-        "https://test.uncefact.org/vocabulary/untp/dte/0.5.0/"
+        "https://test.uncefact.org/vocabulary/untp/dte/0.5.1/"
       ],
       "type": "array",
       "prefixItems": [
@@ -44,7 +44,7 @@
         },
         {
           "type": "string",
-          "const": "https://test.uncefact.org/vocabulary/untp/dte/0.5.0/"
+          "const": "https://test.uncefact.org/vocabulary/untp/dte/0.5.1/"
         }
       ],
       "items": {
@@ -62,7 +62,7 @@
       "readOnly": true,
       "default": [
         "https://www.w3.org/ns/credentials/v2",
-        "https://test.uncefact.org/vocabulary/untp/dte/0.5.0/"
+        "https://test.uncefact.org/vocabulary/untp/dte/0.5.1/"
       ]
     },
     "issuer": {
