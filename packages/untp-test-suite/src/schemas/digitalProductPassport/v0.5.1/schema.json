@@ -26,23 +26,21 @@
       }
     },
     "@context": {
-      "example": "https://test.uncefact.org/vocabulary/untp/dpp/dpp-context.jsonld",
+      "example": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://test.uncefact.org/vocabulary/untp/dpp/0.5.0/"
+      ],
       "type": "array",
-      "allOf": [
+      "prefixItems": [
         {
-          "contains": {
-            "const": "https://www.w3.org/ns/credentials/v2"
-          }
+          "type": "string",
+          "const": "https://www.w3.org/ns/credentials/v2"
         },
         {
-          "contains": {
-            "const": "https://test.uncefact.org/vocabulary/untp/dpp/0.5.0/"
-          }
+          "type": "string",
+          "const": "https://test.uncefact.org/vocabulary/untp/dpp/0.5.0/"
         }
       ],
-      "items": {
-        "type": "string"
-      },
       "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
       "readOnly": true,
       "default": [
