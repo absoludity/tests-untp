@@ -42,13 +42,7 @@
         }
       ],
       "items": {
-        "oneOf": [
-          { "type": "string" },
-          { 
-            "type": "object",
-            "minProperties": 1
-          }
-        ]
+        "type": "string"
       },
       "minItems": 2,
       "uniqueItems": true,
