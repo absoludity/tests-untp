@@ -5,58 +5,41 @@
     "type": {
       "type": "array",
       "readOnly": true,
-      "allOf": [
-        {
-          "contains": {
-            "const": "VerifiableCredential"
-          }
-        },
-        {
-          "contains": {
-            "const": "DigitalFacilityRecord"
-          }
-        }
+      "const": [
+        "DigitalFacilityRecord",
+        "VerifiableCredential"
       ],
       "default": [
-        "VerifiableCredential",
-        "DigitalFacilityRecord"
+        "DigitalFacilityRecord",
+        "VerifiableCredential"
       ],
       "items": {
-        "type": "string"
+        "type": "string",
+        "enum": [
+          "DigitalFacilityRecord",
+          "VerifiableCredential"
+        ]
       }
     },
     "@context": {
-      "example": [
-        "https://www.w3.org/ns/credentials/v2",
-        "https://test.uncefact.org/vocabulary/untp/dfr/0.5.1/"
-      ],
+      "example": "https://test.uncefact.org/vocabulary/untp/dpp/dpp-context.jsonld",
       "type": "array",
-      "prefixItems": [
-        {
-          "type": "string",
-          "const": "https://www.w3.org/ns/credentials/v2"
-        },
-        {
-          "type": "string",
-          "const": "https://test.uncefact.org/vocabulary/untp/dfr/0.5.1/"
-        }
-      ],
       "items": {
-        "oneOf": [
-          { "type": "string" },
-          { 
-            "type": "object",
-            "minProperties": 1
-          }
+        "type": "string",
+        "enum": [
+          "https://www.w3.org/ns/credentials/v2",
+          "https://test.uncefact.org/vocabulary/untp/dfr/0.5.0/"
         ]
       },
-      "minItems": 2,
-      "uniqueItems": true,
-      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. Can be either strings or context objects.",
+      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
       "readOnly": true,
+      "const": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://test.uncefact.org/vocabulary/untp/dfr/0.5.0/"
+      ],
       "default": [
         "https://www.w3.org/ns/credentials/v2",
-        "https://test.uncefact.org/vocabulary/untp/dfr/0.5.1/"
+        "https://test.uncefact.org/vocabulary/untp/dfr/0.5.0/"
       ]
     },
     "id": {

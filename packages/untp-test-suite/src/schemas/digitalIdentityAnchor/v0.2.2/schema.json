@@ -5,60 +5,24 @@
     "type": {
       "type": "array",
       "readOnly": true,
-      "readOnly": true,
-      "allOf": [
-        {
-          "contains": {
-            "const": "VerifiableCredential"
-          }
-        },
-        {
-          "contains": {
-            "const": "DigitalIdentityAnchor"
-          }
-        }
-      ],
-      "default": [
-        "VerifiableCredential",
-        "DigitalIdentityAnchor"
-      ],
+      "const": ["DigitalIdentityAnchor", "VerifiableCredential"],
+      "default": ["DigitalIdentityAnchor", "VerifiableCredential"],
       "items": {
-        "type": "string"
+        "type": "string",
+        "enum": ["DigitalIdentityAnchor", "VerifiableCredential"]
       }
     },
     "@context": {
       "example": "https://test.uncefact.org/vocabulary/untp/dpp/dpp-context.jsonld",
       "type": "array",
-      "type": "array",
-      "prefixItems": [
-        {
-          "type": "string",
-          "const": "https://www.w3.org/ns/credentials/v2"
-        },
-        {
-          "type": "string",
-          "const": "https://test.uncefact.org/vocabulary/untp/dia/0.2.2/"
-        }
-      ],
       "items": {
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "object",
-            "minProperties": 1
-          }
-        ]
+        "type": "string",
+        "enum": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dia/0.2.1/"]
       },
-      "minItems": 2,
-      "uniqueItems": true,
-      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. Can be either strings or context objects.",
+      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
       "readOnly": true,
-      "default": [
-        "https://www.w3.org/ns/credentials/v2",
-        "https://test.uncefact.org/vocabulary/untp/dia/0.2.2/"
-      ]
+      "const": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dia/0.2.1/"],
+      "default": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dia/0.2.1/"]
     },
     "id": {
       "example": "did:web:sample-business.com:123456789#90664869327",
