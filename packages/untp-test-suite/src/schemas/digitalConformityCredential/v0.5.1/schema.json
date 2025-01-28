@@ -817,11 +817,12 @@
         "type": {
           "type": "array",
           "readOnly": true,
-          "const": ["Product"],
+          "contains": {
+            "const": "Product"
+          },
           "default": ["Product"],
           "items": {
-            "type": "string",
-            "enum": ["Product"]
+            "type": "string"
           }
         },
         "id": {
