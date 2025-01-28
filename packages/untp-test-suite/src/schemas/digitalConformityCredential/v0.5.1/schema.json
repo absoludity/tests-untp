@@ -5,24 +5,53 @@
     "type": {
       "type": "array",
       "readOnly": true,
-      "const": ["DigitalConformityCredential", "VerifiableCredential"],
-      "default": ["DigitalConformityCredential", "VerifiableCredential"],
+      "allOf": [
+        {
+          "contains": {
+            "const": "VerifiableCredential"
+          }
+        },
+        {
+          "contains": {
+            "const": "DigitalConformityCredential"
+          }
+        }
+      ],
+      "default": [
+        "VerifiableCredential",
+        "DigitalConformityCredential"
+      ],
       "items": {
-        "type": "string",
-        "enum": ["DigitalConformityCredential", "VerifiableCredential"]
+        "type": "string"
       }
     },
     "@context": {
-      "example": "https://test.uncefact.org/vocabulary/untp/dpp/dpp-context.jsonld",
+      "example": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://test.uncefact.org/vocabulary/untp/dcc/0.5.1/"
+      ],
       "type": "array",
+      "prefixItems": [
+        {
+          "type": "string",
+          "const": "https://www.w3.org/ns/credentials/v2"
+        },
+        {
+          "type": "string",
+          "const": "https://test.uncefact.org/vocabulary/untp/dcc/0.5.1/"
+        }
+      ],
       "items": {
-        "type": "string",
-        "enum": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"]
+        "type": "string"
       },
-      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. ",
+      "minItems": 2,
+      "uniqueItems": true,
+      "description": "A list of JSON-LD context URIs that define the semantic meaning of properties within the credential. Can be either strings or context objects.",
       "readOnly": true,
-      "const": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"],
-      "default": ["https://www.w3.org/ns/credentials/v2", "https://test.uncefact.org/vocabulary/untp/dcc/0.5.0/"]
+      "default": [
+        "https://www.w3.org/ns/credentials/v2",
+        "https://test.uncefact.org/vocabulary/untp/dcc/0.5.1/"
+      ]
     },
     "id": {
       "example": "https://example-company.com/credentials/2a423366-a0d6-4855-ba65-2e0c926d09b0",
@@ -35,15 +64,15 @@
       "description": "The organisation that is the issuer of this VC. Note that the \"id\" property MUST be a W3C DID.  Other identifiers such as tax registration numbers can be listed in the \"otherIdentifiers\" property."
     },
     "validFrom": {
-      "example": "2024-03-15T12:00:00",
+      "example": "2024-03-15T12:00:00Z",
       "type": "string",
-      "format": "date-time",
+      "pattern": "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))",
       "description": "The date and time from which the credential is valid."
     },
     "validUntil": {
-      "example": "2034-03-15T12:00:00",
+      "example": "2034-03-15T12:00:00Z",
       "type": "string",
-      "format": "date-time",
+      "pattern": "-?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])T(([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?|(24:00:00(\\.0+)?))(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))",
       "description": "The expiry date (if applicable) of this verifiable credential."
     },
     "credentialSubject": {
@@ -782,11 +811,12 @@
         "type": {
           "type": "array",
           "readOnly": true,
-          "const": ["Product"],
+          "contains": {
+            "const": "Product"
+          },
           "default": ["Product"],
           "items": {
-            "type": "string",
-            "enum": ["Product"]
+            "type": "string"
           }
         },
         "id": {
